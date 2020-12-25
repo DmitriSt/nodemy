@@ -1,0 +1,4 @@
+{
+  "port": "8080",
+  "mongoUri": "mongodb+srv://dmitriSt:dmitriSt@cluster0.ds4sp.mongodb.net/nodemy?retryWrites=true&w=majority"
+}
