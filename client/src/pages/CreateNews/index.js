@@ -1,9 +1,18 @@
-const CreateNews = () => {
-  return (
-    <div className="main row">
-      <h1>Create</h1>
-    </div>
-  );
-};
+import { connect } from 'react-redux';
+import { setNewNews } from '../../redux/actions/news';
+import CreateNews from './CreateNews';
 
-export default CreateNews;
+const mapStateToProps = state => {
+  return {
+    news: state.news.news,
+    isNewsLoad: state.news.isNewsLoad,
+    isNewsFail: state.news.isNewsFail,
+  }
+}
+
+const mapDispatchToProps = {
+  setNewNews,
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateNews);

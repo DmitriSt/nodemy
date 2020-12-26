@@ -1,13 +1,18 @@
 import { connect } from 'react-redux';
-import { getAllNews } from '../../redux/actions/news';
+import { getAllNews, deleteNews } from '../../redux/actions/news';
 import Home from './Home';
 
-// const mapStateToProps = state => {
-//   news: state.news.news
-// }
-
-const mapDispatchToProps = {
-  getAllNews
+const mapStateToProps = state => {
+  return {
+    news: state.news.news,
+    isNewsLoad: state.news.isNewsLoad,
+    isNewsFail: state.news.isNewsFail,
+  }
 }
 
-export default connect(null, mapDispatchToProps)(Home);
+const mapDispatchToProps = {
+  getAllNews,
+  deleteNews,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

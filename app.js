@@ -9,8 +9,10 @@ const app = express()
 
 app.use(cors())
 
-app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+// require('dotenv').config();
 
 app.use('/api/news', require('./routes/news.routes'))
 

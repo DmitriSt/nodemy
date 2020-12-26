@@ -15,10 +15,12 @@ router.options('/add', (req, res) => {
 });
 
 router.post('/add', async (req, res) => {
-  const {text, date} = req.body;
+  const {text, author, date} = req.body;
   const news = new News({
-    text, date
+    text, author, date
   })
+
+  
     
   await news.save()
   res.status(201).json({news}) 
@@ -29,33 +31,25 @@ router.put('/update', async (req, res) => {
     const news = await News.findById(req.body._id)
 
     news.text = req.body.text;
-    console.log('req.body', req.body)
-    console.log('news', news)
     
     await news.save()
 
     res.status(203).json({news})
   } catch (e) {
-    // res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
-    console.log(e)
+    res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
   }
 })
 
 router.delete('/delete', async (req, res) => {
   try {
     const news = await News.findById(req.body._id)
-
-    // news.text = req.body.text;
-    console.log('req.body', req.body)
-    console.log('news', news)
     
     await news.remove()
 
     res.status(204);
     res.send({message: `News ${req.body._id} removed`})
   } catch (e) {
-    // res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
-    console.log(e)
+    res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
   }
 })
 
